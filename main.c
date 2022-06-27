@@ -7,8 +7,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "Animacoes/desenharLivro.h"
-#include "Animacoes/term.h"
+#include "Animacoes/Funcoes_Anin/desenharLivro.h"
+#include "Animacoes/Funcoes_Anin/term.h"
 #include "Funcoes/aluguel.h"
 #include "Funcoes/biblioteca.h"
 #include "Funcoes/crypto.h"
@@ -389,6 +389,10 @@ void MenuPagamento (User *usuario) {
 
 	while (!fim) {
 
+		tc_canon_off();
+		tc_echo_off();
+		HideCursor();
+
 		do {
 			DrawBegin();
 			DrawTextLeft("MENU", TC_GRN);
@@ -750,14 +754,14 @@ void MostrarLivro (Livro livro) {
 					AnimLivro('e');
 					return;
 				}
-				if(!usuario->admin)
+				if(!usuario->admin){
 					AlugarLivro(usuario, livro.codigo);
-				else {
+					check = ChecaAluguel(usuario, livro.codigo);
+				} else {
 					AnimLivro('d');
 					EditarLivro(livro);
 					livro = BuscarLivroCod(livro.codigo);
 					gcvt(livro.preco, 10, &preco[2]);
-					check = ChecaAluguel(usuario, livro.codigo);
 				}
 			break;
 		}
