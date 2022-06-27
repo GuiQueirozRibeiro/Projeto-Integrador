@@ -37,7 +37,6 @@ User* Login (char, char);
 void AninLoading ();
 void MostrarAutor (ull);
 void AdicionarLivro ();
-void RemoverLivro ();
 void ProcurarLivro ();
 void ProcurarAutor ();
 void MostrarBiblioteca ();
