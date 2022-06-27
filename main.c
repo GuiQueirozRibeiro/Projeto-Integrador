@@ -7,8 +7,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "Animacoes/Funcoes_Anin/desenharLivro.h"
-#include "Animacoes/Funcoes_Anin/term.h"
+#include "Animacoes/desenharLivro.h"
+#include "Animacoes/term.h"
 #include "Funcoes/aluguel.h"
 #include "Funcoes/biblioteca.h"
 #include "Funcoes/crypto.h"
