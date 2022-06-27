@@ -25,7 +25,7 @@ extern __useconds_t ualarm(__useconds_t __value, __useconds_t __interval) __THRO
 extern int usleep(__useconds_t __useconds);
 #endif
 
-//-----------------------MENUS--------------------------
+//-----------------------MENUS-------------------------
 
 void MenuAdmin ();
 void MenuCliente ();
@@ -517,7 +517,6 @@ void EditarLivro(Livro livro){
 	char resp = 0;
 	char posY = 0;
 	char posX = 0;
-	size_t posiL = strlen(livro.titulo);
 	Livro antigo = livro;
 	
 	char quant[5] = {0};
@@ -551,15 +550,15 @@ void EditarLivro(Livro livro){
 		
 		DrawTextSpace('l');
 		DrawTextLeft("Titulo:", TC_GRN);
-		DrawTextLeft(livro.titulo, !posY && !posX ? escolha : TC_GRN);
+		DrawTextLeft(livro.titulo,  TC_GRN);
 		
 		DrawTextSpace('l');
 		DrawTextLeft("Quantidade:", TC_GRN);
-		DrawTextLeft(quant, posY == 1 && !posX ? escolha : TC_GRN);
+		DrawTextLeft(quant, !posY && !posX ? escolha : TC_GRN);
 		
 		DrawTextSpace('l');
 		DrawTextLeft("Preco:", TC_GRN);
-		DrawTextLeft(preco, posY == 2 && !posX ? escolha : TC_GRN);
+		DrawTextLeft(preco, posY && !posX ? escolha : TC_GRN);
 
 		DrawTextSpace('r');
 		DrawTextSpace('r');
@@ -606,13 +605,12 @@ void EditarLivro(Livro livro){
 						if(posY && !enter) posY--;
 					break;
 					case 'B':
-						if(posX && posY) break;
-						if(posY == 2 || enter) break;
+						if(posY || enter) break;
 						posY++;
 					break;
 					case 'C':
 						if(enter){
-							if(posY == 1){
+							if(!posY){
 								livro.quantidade++;
 								NumToStr(livro.quantidade, quant, 10);
 							}
@@ -624,7 +622,7 @@ void EditarLivro(Livro livro){
 					break;
 					case 'D':
 						if(enter){
-							if(posY == 1 && (livro.quantidade - livro.alugado)){
+							if(!posY && (livro.quantidade - livro.alugado)){
 								livro.quantidade--;
 								NumToStr(livro.quantidade, quant, 10);
 							}
@@ -641,12 +639,7 @@ void EditarLivro(Livro livro){
 			break;
 			case 8:
 			case 127:
-				if(posY == 1) break;
-				if(!posY){
-					if(!posiL) break;
-					livro.titulo[--posiL] = 0;
-					break;
-				}
+				if(!posY) break;
 				
 				if(!posiP) break;
 				if(preco[--posiP+2] == '.') ponto = 0;
@@ -654,22 +647,16 @@ void EditarLivro(Livro livro){
 				if(!posiP) preco[posiP+2] = '0';
 			break;
 			default:
-				if(resp < 32 || resp > 126 || !enter || posY == 1) break;
-				if(posY && resp == ',') resp = '.';
-				if(posY && (resp < '0' || resp > '9') && resp != '.')
-					break;
+				if(!enter || !posY || posiP >= 8) break;
+				if(resp == ',') resp = '.';
+				if((resp < '0' || resp > '9') && resp != '.') break;
 
-				if(!posY && posiL < 49){
-					livro.titulo[posiL++] = resp;
-					livro.titulo[posiL] = 0;
-				}else if(posY && posiP < 8){
-					if(resp == '.' && ponto) break;
-					if(ponto && (posiP - posiPonto) > 2) break;
-					if(resp == '.') { ponto = 1; posiPonto = posiP; }
-					
-					preco[2 + posiP] = resp;
-					posiP++;
-				}
+				if(resp == '.' && ponto) break;
+				if(ponto && (posiP - posiPonto) > 2) break;
+				if(resp == '.') { ponto = 1; posiPonto = posiP; }
+				
+				preco[2 + posiP] = resp;
+				posiP++;
 			break;
 		}
 	}
@@ -963,7 +950,7 @@ void ProcurarLivro () {
 				quant--;
 				buff[quant] = 0;
 				ClearList(livros);
-
+				posiY = 0;
 				if (quant >= 3)
 					Buscar_Livro(livros, buff, 3);
 				break;
@@ -972,6 +959,7 @@ void ProcurarLivro () {
 					break;
 				buff[quant++] = resp;
 				Upper_Case(buff);
+				posiY = 0;
 				if (quant >= 3) {
 					ClearList(livros);
 					Buscar_Livro(livros, buff, 10);
@@ -1225,12 +1213,14 @@ void MostrarBiblioteca () {
 					case 'C':
 						if(pag == totalPag) break;
 						pag++;
+						posY = 0;
 						ClearList(livros);
 						ShowBiblioteca(livros, pag, &totalPag, 24);
 						AnimLivro('d');
 					break;
 					case 'D':
 						if(pag == 1) break;
+						posY = 0;
 						pag--;
 						ClearList(livros);
 						ShowBiblioteca(livros, pag, &totalPag, 24);
