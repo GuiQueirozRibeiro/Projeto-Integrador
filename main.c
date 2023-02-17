@@ -7,8 +7,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "Animacoes/desenharLivro.h"
-#include "Animacoes/term.h"
+#include "Animacoes/Funcoes_Anin/desenharLivro.h"
+#include "Animacoes/Funcoes_Anin/term.h"
 #include "Funcoes/aluguel.h"
 #include "Funcoes/biblioteca.h"
 #include "Funcoes/crypto.h"
@@ -48,13 +48,13 @@ User *usuario = NULL;
 int main (void) {
 	char resp;
 	int opc = 0;
-	int status;
 	char fim = 0;
 	char *ops[] = {"CADASTRO", "LOGIN", "LOGIN ADMIN", "SAIR"};
 
 	tc_echo_off();
 	tc_canon_off();
 	HideCursor();
+	ClearScreen();
 
 	AnimLivro('A');
 
@@ -122,6 +122,7 @@ int main (void) {
 				break;
 			case 3:
 				AnimLivro('F');
+				HideCursor();
 				SetCursorPosition(1, 27);
 				fim = 1;
 				break;
@@ -313,7 +314,6 @@ void MenuCliente (User *usuario) {
 		printf("\nEntrando no Menu...\n");
 		sleep(4);
 	}
-
 	while (!fim) {
 
 		do {
@@ -382,8 +382,6 @@ void MenuPagamento (User *usuario) {
 	char resp;
 	char fim = 0;
 	int opc = 0;
-	int status;
-	int cont = -1;
 	char *ops[] = {"Adicionar Cartao",	"Remover Cartao", "Meus Cartoes", "Sair"};
 
 	while (!fim) {
@@ -433,9 +431,6 @@ void MenuPagamento (User *usuario) {
 			case 3:
 				AnimLivro('E');
 				fim = 1;
-				break;
-			default:
-				printf("\n\nSelecione uma opção válida!!!\n\n");
 				break;
 		}
 	}
@@ -487,9 +482,11 @@ void MenuAdmin (User *usuario) {
 				AdicionarLivro();
 			break;
 			case 1:
+				UnsaveText('r');
 				ProcurarLivro();
 			break;
 			case 2:
+				UnsaveText('r');
 				ProcurarAutor();
 			break;
 			case 3:
@@ -517,7 +514,6 @@ void EditarLivro(Livro livro){
 	char resp = 0;
 	char posY = 0;
 	char posX = 0;
-	Livro antigo = livro;
 	
 	char quant[5] = {0};
 	NumToStr(livro.quantidade, quant, 10);
@@ -773,7 +769,6 @@ void AdicionarLivro () {
 	char posiL = 0;
 	char posiA = 0;
 	char posiP = 0;
-	char erro = 0;
 	char ponto = 0;
 	
 
@@ -879,7 +874,6 @@ void ProcurarLivro () {
 	size_t pagina = 0;
 	size_t quant = 0;
 
-	char livroPorPagina = 5;
 	char buff[51] = {0};
 	char posiY = 0;
 	char resp = 0;
@@ -895,11 +889,11 @@ void ProcurarLivro () {
 			char count = 0;
 			DrawTextSpace('r');
 			for (t_noL *no = livros->inicio; no != livros->fim; no = no->proximo) {
-				count++;
 				if (count == posiY)
 					DrawTextRight(no->livro.titulo, TC_RED);
 				else
 					DrawTextRight(no->livro.titulo, TC_GRN);
+				count++;
 			}
 		}
 		LoadText();
@@ -920,21 +914,21 @@ void ProcurarLivro () {
 						posiY--;
 						break;
 					case 'B':
-						if (posiY >= livros->size)
+						if (posiY + 1 >= livros->size)
 							break;
 						posiY++;
 						break;
 				}
 				break;
 			case 10:
-				if (posiY) {
+				{
 					t_noL *no = livros->inicio;
 					int count = 0;
 
 					while (no != livros->fim) {
-						count++;
 						if (count == posiY)
 							break;
+						count++;
 						no = no->proximo;
 					}
 					if (no == livros->fim)
@@ -972,7 +966,6 @@ void ProcurarLivro () {
 void MostrarAutor (ull autorCod) {
 	Autor autor;
 	BuscarAutorCod(autorCod, &autor);
-	printf("\n%llu\n", autor.cod);
 	Livro livro;
 	char resp = 0;
 	size_t posL = 0;
@@ -1018,6 +1011,7 @@ void MostrarAutor (ull autorCod) {
 
 		switch(resp){
 			case 10:
+				AnimLivro('d');
 				MostrarLivro(BuscarLivroCod(autor.livros_escritos[posY + posL]));
 			break;
 			case 27:
@@ -1071,10 +1065,11 @@ void ProcurarAutor () {
 		LoadText();
 		
 		int count = 0;
+		DrawTextSpace('r');
 		if(!erro){
 			for (t_noA *no = autores->inicio; no != autores->fim; no = no->proximo) {
+				DrawTextRight(no->autor.nome, count == posY ? TC_RED : TC_BLK);
 				count++;
-				DrawTextRight(no->autor.nome, count == posY ? TC_RED : TC_BLU);
 			}
 		}
 
@@ -1084,14 +1079,14 @@ void ProcurarAutor () {
 
 		switch (resp) {
 			case 10:
-				if (posY) {
+				{
 					size_t cont = 0;
 					for(t_noA *no = autores->inicio; no != autores->fim; no = no->proximo) {
-						cont++;
 						if (posY == cont) {
 							MostrarAutor(no->autor.cod);
 							break;
 						}
+						cont++;
 					}
 				}
 			break;
@@ -1107,7 +1102,7 @@ void ProcurarAutor () {
 						if (posY) posY--;
 					break;
 					case 'B':
-						if (posY < autores->size) posY++;
+						if (posY + 1 < autores->size) posY++;
 					break;
 				}
 			break;
@@ -1117,8 +1112,9 @@ void ProcurarAutor () {
 				
 				autor[--quant] = 0;
 				posY = 0;
+				
+				ClearListA(autores);
 				if (quant >= 3) {
-					ClearListA(autores);
 					BuscarAutor(autores, autor, 3);
 				}
 			break;
