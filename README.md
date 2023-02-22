@@ -28,7 +28,7 @@ This project was developed as part of the Integrative Project course in college,
 
 **Or**
 
-**Is found in Github: "https://github.com/Gui1111RIbeiro/Projeto-Integrador"**
+**Is found in Github: "https://github.com/GuiQueirozRibeiro/Projeto-Integrador"**
 
 # 🔨 Project Features
 
