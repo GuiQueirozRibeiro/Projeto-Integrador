@@ -16,7 +16,7 @@ Integrator Project
 
 # Project Status
 
-![](https://img.shields.io/badge/state-success-brightgreen/github/deployments/:user/:repo/:environment)
+![Badge Success](https://img.shields.io/badge/state-success-brightgreen?style=)
 
 # Project Description
 
