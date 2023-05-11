@@ -4,58 +4,58 @@ Projeto Integrador
 
 ![](https://www.iugu.com/hubfs/livros3.jpg)
 
-# Index
+# Índice
 
-* [Index](#index)
-* [Project Status](#project-status)
-* [Project Description](#project-description)
-* [Access the Project](#-access-the-project)
-* [Project Features](#-project-features)
-* [Run the Project](#-run-the-project)
-* [Authors](#-authors)
+* [Índice](#índice)
+* [Status do Projeto](#status-do-projeto)
+* [Descrição do Projeto](#descrição-do-projeto)
+* [Acesse o Projeto](#-acesse-o-projeto)
+* [Funcionalidades do Projeto](#-funcionalidades-do-projeto)
+* [Executar o Projeto](#-executar-o-projeto)
+* [Autores](#-autores)
 
-# Project Status
+# Status do Projeto
 
-![](https://img.shields.io/badge/state-success-brightgreen/github/deployments/:user/:repo/:environment)
+![Badge Success](https://img.shields.io/badge/Status-Sucesso-brightgreen)
 
-# Project Description
+# Descrição do Projeto
 
-This project was developed as part of the Integrative Project course in college, which was associated with the practice of data structures in the C language. Our group chose the theme of library and created a library management system. Our objective was to ensure the security of both customers and employees, so we used encryption to store all data. We also created a payment system, which, even without using real transactions, we developed a system using fake cards. Also the book are controlled by each user without affect any other.
+Este projeto foi desenvolvido como parte do curso de Projeto Integrador na faculdade, que foi associado à prática de estruturas de dados na linguagem C. Nosso grupo escolheu o tema de biblioteca e criou um sistema de gerenciamento de biblioteca. Nosso objetivo era garantir a segurança tanto dos clientes quanto dos funcionários, então usamos criptografia para armazenar todos os dados e uma separação entre usuários administradores e os clientes para cada grupo ter diferentes permissões e funções visando o papel de cada um. Também criamos um sistema de pagamento, que, mesmo sem usar transações reais, desenvolvemos um sistema usando cartões falsos. Além disso, os livros são controlados por cada usuário sem afetar os outros.
 
-# 📁 Access the Project
+# 📁 Acesse o Projeto
 
-**Is found Repl-it: "https://replit.com/@GuilhermeQueir3/Estrutura-de-Dados#main.c"**
+**Está disponível no Repl-it: "https://replit.com/@GuilhermeQueir3/Estrutura-de-Dados#main.c"**
 
-**Or**
+**Ou**
 
-**Is found in Github: "https://github.com/GuiQueirozRibeiro/Projeto-Integrador"**
+**Está disponível no Github: "https://github.com/GuiQueirozRibeiro/Projeto-Integrador"**
 
-# 🔨 Project Features
+# 🔨 Funcionalidades do Projeto
 
-- `Feature 1`: register and log each user
-- `Feature 2`: rent books
-- `Feature 3`: make fake payments
-- `Feature 4`: search books on the library
-- `Feature 5`: encrypt all data
-- `Feature 6`: manage library book inventory
+- `Funcionalidade 1`: registrar e fazer login de cada usuário
+- `Funcionalidade 2`: alugar livros
+- `Funcionalidade 3`: fazer pagamentos falsos
+- `Funcionalidade 4`: pesquisar livros na biblioteca
+- `Funcionalidade 5`: criptografar todos os dados
+- `Funcionalidade 6`: gerenciar o inventário de livros da biblioteca
 
-# ▶ Run the Project
+# ▶ Executar o Projeto
 
-- `To compile the programm, use:`
+- `Para compilar o programa, use:`
 
 ```console
 gcc main.c -o main -lm
 ```
 
-- `To execute the programm, use:`
+- `Para executar o programa, use:`
 
 ```console
 ./main
 ```
 
-# 👨‍💻 Authors
+# 👨‍💻 Autores
 
-| [<img src="https://avatars.githubusercontent.com/u/70274921?s=400&u=c1688d6fcd13223bfe1093c6d16b3b6b646545fe&v=4" width=115><br><sub>Guilherme Queiroz Ribeiro</sub>](https://github.com/Gui1111RIbeiro)
+| [<img src="https://avatars.githubusercontent.com/u/70274921?s=400&u=c1688d6fcd13223bfe1093c6d16b3b6b646545fe&v=4" width=115><br><sub>Guilherme Queiroz Ribeiro</sub>](https://github.com/GuiQueirozRibeiro)
 | :---: |
 
-### End
+### Fim
