@@ -1,6 +1,6 @@
-Projeto Integrador
+Integrator Project
 ==========
-## Biblioteca virtual
+## Virtual library
 
 ![](https://www.iugu.com/hubfs/livros3.jpg)
 
@@ -20,7 +20,7 @@ Projeto Integrador
 
 # Project Description
 
-This project was developed as part of the Integrative Project course in college, which was associated with the practice of data structures in the C language. Our group chose the theme of library and created a library management system. Our objective was to ensure the security of both customers and employees, so we used encryption to store all data. We also created a payment system, which, even without using real transactions, we developed a system using fake cards. Also the book are controlled by each user without affect any other.
+This project was developed as part of the Integrative Project course in college, which was associated with the practice of data structures in the C language. Our group chose the theme of library and created a library management system. Our objective was to ensure the security of both customers and employees, so we used encryption to store all data and a separation between administrator users and clients so that each group has different permissions and functions, considering the role of each one. We also created a payment system, which, even without using real transactions, we developed a system using fake cards. Also the book are controlled by each user without affect any other.
 
 # 📁 Access the Project
 
@@ -55,7 +55,7 @@ gcc main.c -o main -lm
 
 # 👨‍💻 Authors
 
-| [<img src="https://avatars.githubusercontent.com/u/70274921?s=400&u=c1688d6fcd13223bfe1093c6d16b3b6b646545fe&v=4" width=115><br><sub>Guilherme Queiroz Ribeiro</sub>](https://github.com/Gui1111RIbeiro)
+| [<img src="https://avatars.githubusercontent.com/u/70274921?s=400&u=c1688d6fcd13223bfe1093c6d16b3b6b646545fe&v=4" width=115><br><sub>Guilherme Queiroz Ribeiro</sub>](https://github.com/GuiQueirozRibeiro)
 | :---: |
 
 ### End
