@@ -16,7 +16,8 @@ Integrator Project
 
 # Project Status
 
-![Badge Success](https://img.shields.io/badge/state-success-brightgreen?style=)
+
+![Badge Success](https://img.shields.io/badge/State-Success-brightgreen?style=for-the-badge)
 
 # Project Description
 
