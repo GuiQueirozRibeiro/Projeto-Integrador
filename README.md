@@ -9,7 +9,7 @@ Projeto Integrador
 * [Índice](#índice)
 * [Status do Projeto](#status-do-projeto)
 * [Descrição do Projeto](#descrição-do-projeto)
-* [Acesse o Projeto](#-acesse-o-projeto)
+* [Acesso ao Projeto](#-acesso-ao-projeto)
 * [Funcionalidades do Projeto](#-funcionalidades-do-projeto)
 * [Executar o Projeto](#-executar-o-projeto)
 * [Autores](#-autores)
